@@ -1,0 +1,236 @@
+/* ===== Thiết lập chung và mô hình hộp ===== */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.7;
+  color: #243047;
+  background: #f3f6fb;
+}
+
+.site-header {
+  padding: 42px 20px 30px;
+  text-align: center;
+  color: white;
+  background: linear-gradient(135deg, #173b70, #3979b9);
+}
+
+.site-header h1 {
+  margin: 0 0 8px;
+  font-size: clamp(1.8rem, 4vw, 2.7rem);
+}
+
+.tagline {
+  margin: 0;
+  color: #e6f2ff;
+}
+
+/* ===== Liên kết bỏ qua: chỉ xuất hiện khi được focus ===== */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 12px;
+  z-index: 1000;
+  padding: 10px 16px;
+  color: #fff;
+  background: #172554;
+  border: 3px solid #fbbf24;
+  border-radius: 8px;
+}
+
+.skip-link:focus {
+  top: 12px;
+  outline: 3px solid #fff;
+  outline-offset: 3px;
+}
+
+/* ===== Flexbox cho thanh điều hướng ===== */
+.main-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 12px 16px;
+  background: #102b50;
+}
+
+.main-nav a {
+  display: inline-block;
+  padding: 10px 20px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 8px;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.main-nav a:hover {
+  background: #2d5d91;
+  transform: translateY(-2px);
+}
+
+.main-nav a:focus-visible {
+  outline: 3px solid #fbbf24;
+  outline-offset: 3px;
+}
+
+.main-nav a[aria-current="page"] {
+  color: #102b50;
+  background: #dbeafe;
+}
+
+/* ===== Nội dung và Grid hai cột ===== */
+.page-content {
+  width: min(1100px, 92%);
+  margin: 30px auto;
+}
+
+section {
+  margin-bottom: 30px;
+}
+
+h2 {
+  margin-top: 0;
+  color: #173b70;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 28px;
+  align-items: center;
+}
+
+.feature-image {
+  display: block;
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border: 5px solid white;
+  border-radius: 16px;
+  padding: 4px;
+  margin: 8px 0;
+  box-shadow: 0 8px 22px rgb(20 45 80 / 15%);
+}
+
+/* ===== Thẻ nội dung: dùng border, padding, margin ===== */
+.card-list,
+.hobby-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.hobby-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.card {
+  padding: 20px;
+  margin: 0;
+  border: 1px solid #d7e1ef;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 5px 16px rgb(20 45 80 / 7%);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card h3 {
+  margin-top: 0;
+  color: #245b96;
+}
+
+/* Hiệu ứng hover trên thẻ và ảnh */
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgb(20 45 80 / 14%);
+}
+
+.card img {
+  display: block;
+  width: 100%;
+  height: 210px;
+  object-fit: cover;
+  margin-bottom: 14px;
+  border: 4px solid #eaf2fb;
+  border-radius: 10px;
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.card img:hover {
+  transform: scale(1.02);
+  border-color: #72a7df;
+}
+
+/* nth-child: tạo màu nền xen kẽ cho các thẻ */
+.card-list .card:nth-child(odd),
+.hobby-grid .card:nth-child(odd) {
+  background: #f8fbff;
+}
+
+.card-list .card:nth-child(even),
+.hobby-grid .card:nth-child(even) {
+  background: #eaf3ff;
+}
+
+.quote-panel {
+  padding: 24px;
+  border-left: 6px solid #3979b9;
+  border-radius: 8px;
+  background: #e7f0fc;
+}
+
+.quote-panel p {
+  margin-bottom: 0;
+  font-size: 1.15rem;
+  font-style: italic;
+}
+
+.site-footer {
+  padding: 20px;
+  text-align: center;
+  color: #e6f2ff;
+  background: #102b50;
+}
+
+/* Responsive: hiển thị tốt trên điện thoại */
+@media (max-width: 700px) {
+  .grid,
+  .card-list,
+  .hobby-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-image {
+    height: 230px;
+  }
+
+  .main-nav a {
+    padding: 9px 12px;
+  }
+
+  .page-content {
+    width: min(100% - 28px, 600px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
